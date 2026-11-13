@@ -61,27 +61,27 @@
     },
     "E5 news-fine-tuned (30)": {
       "MRR@10": 24.191163710030093,
-      "Recall@1": 4.508330610911466
+      "Recall@1": 16.108025699662416
     },
     "News-trained fused retriever (30)": {
       "MRR@10": 39.79588836514677,
-      "Recall@1": 21.13688337144724
+      "Recall@1": 28.636611129260586
     },
     "News fine-tuned equal-weight fusion (30)": {
       "MRR@10": 39.71693683462713,
-      "Recall@1": 19.60143743874551
+      "Recall@1": 28.61047587934226
     },
     "E5 KNQAD-fine-tuned (5)": {
       "MRR@10": 27.30582650135084,
-      "Recall@1": 9.212675596210389
+      "Recall@1": 18.458020254818685
     },
     "KNQAD-trained fused retriever (5)": {
       "MRR@10": 41.35876593913183,
-      "Recall@1": 22.60699117935315
+      "Recall@1": 29.898725906566483
     },
     "KNQAD fine-tuned equal-weight fusion (5)": {
       "MRR@10": 41.39334847518448,
-      "Recall@1": 24.828487422410976
+      "Recall@1": 30.225416530545573
     }
   },
   "comparisons": {
