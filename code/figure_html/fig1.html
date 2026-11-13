@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<style>
+@page { size: 1260px 846px; margin: 0; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1260px;height:846px;overflow:hidden;background:#fff;font-family:"Segoe UI",Arial,sans-serif;color:#1e293b;padding:14px}
+.kur{font-family:"Segoe UI",Tahoma,Arial,sans-serif;direction:rtl;unicode-bidi:isolate}
+.hdr{background:#0f172a;border-radius:14px;color:#fff;text-align:center;padding:14px 10px 12px}
+.hdr h1{font-size:21px;font-weight:700}
+.hdr p{font-size:11px;color:#cbd5e1;margin-top:5px}
+.main{display:flex;gap:0;margin-top:14px;height:704px;align-items:stretch}
+.col{border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:9px}
+.c1{width:392px;background:#f1f7ff;border:2px solid #93c5fd}
+.c2{width:322px;background:#fff1f7;border:2px solid #f9a8d4}
+.c3{width:400px;background:#effcf4;border:2px solid #86efac}
+.gap{width:73px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:10px;font-weight:600;text-align:center}
+.pill{border-radius:7px;padding:6px 8px;line-height:1.25}
+.gap .arrow{font-size:30px;line-height:1}
+.title{color:#fff;font-weight:700;font-size:13.5px;text-align:center;padding:9px 6px;border-radius:7px}
+.card{background:#fff;border-radius:10px;padding:9px 12px;font-size:10.5px;text-align:center}
+.card .lbl{font-weight:700;font-size:10.5px;text-align:left;margin-bottom:5px}
+.small{font-size:9px;color:#64748b;font-style:italic;margin-top:5px}
+.dn{color:#60a5fa;text-align:center;font-size:12px;line-height:8px;height:8px}
+.kq{font-size:19px;font-weight:600;line-height:1.55;color:#111}
+.eq{font-family:"Cambria Math","Times New Roman",serif;font-size:12px}
+.mat{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;padding:4px 14px}
+.mat i{display:block;height:17px;border-radius:2px}
+</style></head><body>
+<div class="hdr"><h1>Kurdish Sorani Retrieval: Evaluated System and Future Components</h1>
+<p>Evaluated raw-text char-4gram BM25 + fine-tuned E5 + zero-shot BGE-M3 fusion; later stages are not implemented</p></div>
+
+<div class="main">
+<div class="col c1">
+  <div class="title" style="background:#1d4ed8">EVALUATED · RAW-TEXT HYBRID RETRIEVAL</div>
+  <div class="card" style="border:1.5px solid #bfdbfe">
+    <div class="lbl" style="color:#1d4ed8">INPUT QUERY q — illustrative example</div>
+    <div class="kur kq">پایتەختی مێرنشینی بابان لە چ ساڵێکدا گوازرایەوە؟</div>
+    <div class="small">Gloss: “In which year was the capital of Baban transferred?”</div>
+  </div>
+  <div class="dn">▼</div>
+  <div class="card" style="border:1.5px solid #bfdbfe">
+    <div class="lbl" style="color:#1d4ed8">KNOWLEDGE CORPUS C — 492 news passages</div>
+    <div style="font-weight:700;margin-bottom:4px">Kurdish news articles (headline = query, body = passage)</div>
+    <div style="font-size:9px;color:#64748b">One article body = one passage · no chunking in our benchmark</div>
+    <div style="display:inline-block;margin-top:6px;background:#dbeafe;border:1px solid #93c5fd;color:#1e40af;font-weight:600;font-size:9.5px;border-radius:6px;padding:3px 12px">Corpus integrity: SHA-256 verified</div>
+  </div>
+  <div class="dn">▼</div>
+  <div class="card" style="border:2px solid #2563eb">
+    <div class="title" style="background:#2563eb;font-size:11px;padding:6px;margin-bottom:6px">RAW TEXT — USED IN THE FUSED RETRIEVER</div>
+    <div style="font-weight:700;margin-bottom:5px">No clitic splitting is applied in the final fused retriever.</div>
+    <div style="font-size:9.5px">The rule-based splitter was tested separately and never selected during validation.</div>
+  </div>
+  <div class="dn">▼</div>
+  <div class="card" style="border:1.5px solid #bfdbfe">
+    <div class="lbl" style="color:#1d4ed8">DENSE SCORES — FINE-TUNED E5 + ZERO-SHOT BGE-M3</div>
+    <div style="display:flex;gap:8px">
+      <div style="flex:1;background:#eff6ff;border:1.5px solid #93c5fd;border-radius:8px;padding:6px"><b style="color:#1d4ed8;font-size:10px">Query tower</b><div class="eq" style="margin-top:4px">e<sub>q</sub> = f<sub>θ</sub>(q) ∈ ℝ<sup>d</sup></div></div>
+      <div style="flex:1;background:#eff6ff;border:1.5px solid #93c5fd;border-radius:8px;padding:6px"><b style="color:#1d4ed8;font-size:10px">Passage tower</b><div class="eq" style="margin-top:4px">e<sub>p</sub> = g<sub>φ</sub>(p) ∈ ℝ<sup>d</sup></div></div>
+    </div>
+    <div class="eq" style="margin-top:7px;color:#1d4ed8">S<sub>fused</sub> = w<sub>1</sub>z(char-4gram BM25) + w<sub>2</sub>z(fine-tuned E5) + w<sub>3</sub>z(zero-shot BGE-M3)</div>
+  </div>
+  <div style="flex:1"></div>
+  <div style="background:#1e40af;color:#fff;border-radius:10px;padding:9px;text-align:center;font-size:10.5px;line-height:1.5">
+    <b style="font-size:11.5px">OUTPUT: FUSED PASSAGE RANKING</b><br>Per-query z-score weighted fusion of the three evaluated signals<br><b>EVALUATED in this paper (retrieval only)</b></div>
+</div>
+
+<div class="gap"><div class="pill" style="background:#dbeafe;border:1px solid #93c5fd;color:#1e40af">Ranked<br>passages</div><div class="arrow" style="color:#2563eb">➜</div></div>
+
+<div class="col c2">
+  <div class="title" style="background:#be185d">STAGE 2 · RERANKER — NOT IMPLEMENTED</div>
+  <div class="card" style="border:1.5px solid #fbcfe8">
+    <div class="lbl" style="color:#9d174d">VERIFICATION POOL — 20 paired passages</div>
+    <div class="eq" style="font-size:12.5px">{(q,p<sub>1</sub>), (q,p<sub>2</sub>), … , (q,p<sub>20</sub>)}</div>
+    <div class="small">Joint token concatenation: [CLS] ∘ q ∘ [SEP] ∘ p</div>
+    <div class="small"><b>NOT IMPLEMENTED</b></div>
+  </div>
+  <div class="dn" style="color:#ec4899">▼</div>
+  <div class="card" style="border:1.5px solid #fbcfe8">
+    <div class="title" style="background:#db2777;font-size:10.5px;padding:6px;margin-bottom:6px">CROSS-ATTENTION INTERACTION MATRIX</div>
+    <div style="font-weight:700;font-size:10px;margin-bottom:6px">Full all-to-all token-to-token attention weights</div>
+    <div class="mat">
+      <i style="background:#fce7f3"></i><i style="background:#f472b6"></i><i style="background:#db2777"></i><i style="background:#fce7f3"></i><i style="background:#f472b6"></i><i style="background:#db2777"></i>
+      <i style="background:#f472b6"></i><i style="background:#db2777"></i><i style="background:#fce7f3"></i><i style="background:#f472b6"></i><i style="background:#db2777"></i><i style="background:#fce7f3"></i>
+      <i style="background:#db2777"></i><i style="background:#fce7f3"></i><i style="background:#f472b6"></i><i style="background:#db2777"></i><i style="background:#fce7f3"></i><i style="background:#f472b6"></i>
+      <i style="background:#fce7f3"></i><i style="background:#f472b6"></i><i style="background:#db2777"></i><i style="background:#fce7f3"></i><i style="background:#f472b6"></i><i style="background:#db2777"></i>
+    </div>
+    <div class="eq" style="color:#9d174d;margin-top:8px;font-size:12px"><b>A</b><sub>i,j</sub> = softmax( <i>QK<sup>⊤</sup></i> / √d<sub>k</sub> )</div>
+    <div style="font-weight:700;color:#9d174d;font-size:10px;margin-top:3px">⇒ Deep word-sense disambiguation</div>
+    <div style="color:#047857;font-weight:600;font-size:9.5px;margin-top:4px;line-height:1.35">Neutralises lexical surface traps and spurious homonym overlaps</div>
+    <div class="small"><b>NOT IMPLEMENTED</b></div>
+  </div>
+  <div class="dn" style="color:#ec4899">▼</div>
+  <div class="card" style="border:1.5px solid #fbcfe8">
+    <div class="lbl" style="color:#9d174d">RANKING &amp; FILTERING — relevance scoring</div>
+    <div class="eq" style="color:#9d174d;font-size:12px">s<sub>rerank</sub>(q,p) = <b>W</b><sub>rerank</sub> · <b>h</b><sub>[CLS]</sub> + b</div>
+    <div style="font-weight:700;color:#be185d;font-size:10px;margin-top:6px;line-height:1.35">High-precision pruning: 20 candidates → top-k = 5 gold context</div>
+    <div style="font-weight:700;color:#047857;font-size:10px;margin-top:5px">NOT EVALUATED: no Kurdish reranker was trained or tested</div>
+    <div class="small">Filters out clitic-inflected semantic distractors</div>
+    <div class="small"><b>NOT IMPLEMENTED</b></div>
+  </div>
+  <div style="flex:1"></div>
+  <div style="background:#9d174d;color:#fff;border-radius:10px;padding:9px;text-align:center;font-size:10.5px;line-height:1.5">
+    <b style="font-size:11.5px">NOT IMPLEMENTED: NO RERANKED OUTPUT</b><br><span class="eq" style="font-size:11.5px">The box above is a design sketch only.</span></div>
+</div>
+
+<div class="gap"><div class="pill" style="background:#fce7f3;border:1px solid #f9a8d4;color:#9d174d">Future<br>context</div><div class="arrow" style="color:#db2777">➜</div></div>
+
+<div class="col c3">
+  <div class="title" style="background:#059669">STAGE 3 · GENERATOR — NOT IMPLEMENTED</div>
+  <div class="card" style="border:1.5px solid #bbf7d0">
+    <div class="lbl" style="color:#047857">HYPOTHETICAL AUTOREGRESSIVE GENERATOR</div>
+    <div style="font-weight:700;color:#047857;font-size:10.5px">Prompt <span class="eq">x = [𝒦<sub>5</sub>(q) ∥ q]</span> → sample N = 5 responses (T = 0.7)</div>
+    <div style="font-weight:700;color:#047857;font-size:10.5px;margin-top:5px">Stochastic paths: <span class="eq">𝒴 = {y<sup>(1)</sup>, y<sup>(2)</sup>, y<sup>(3)</sup>, y<sup>(4)</sup>, y<sup>(5)</sup>}</span></div>
+    <div class="small">Explores the semantic answer distribution to expose epistemic uncertainty</div>
+    <div class="small"><b>NOT IMPLEMENTED</b></div>
+  </div>
+  <div class="dn" style="color:#10b981">▼</div>
+  <div class="card" style="border:1.5px solid #bbf7d0">
+    <div class="title" style="background:#047857;font-size:10.5px;padding:6px;margin-bottom:8px">DUAL-CALIBRATION &amp; FACT-VERIFICATION ENGINE</div>
+    <div style="display:flex;gap:8px">
+      <div style="flex:1;background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:6px"><b style="font-size:9.5px;color:#047857">1 · Semantic entropy (H<sub>sem</sub>)</b><div class="eq" style="margin-top:4px">H<sub>sem</sub> = −∑<sub>c</sub> P<sub>c</sub> log P<sub>c</sub></div><div style="font-size:8.5px;color:#64748b;margin-top:3px">Cluster by NLI entailment: y(i) ⇔ y(j)</div></div>
+      <div style="flex:1;background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:6px"><b style="font-size:9.5px;color:#047857">2 · Grounding score (Φ<sub>ground</sub>)</b><div class="eq" style="margin-top:4px">Φ<sub>ground</sub>(y*, 𝒦<sub>5</sub>) ∈ [0, 1]</div><div style="font-size:8.5px;color:#64748b;margin-top:3px">Premise entailment verification</div></div>
+    </div>
+    <div style="margin-top:8px;background:#fef3c7;border:1.5px solid #fcd34d;border-radius:8px;padding:7px">
+      <div style="font-weight:700;color:#92400e;font-size:10px">Joint uncertainty decision criterion</div>
+      <div class="eq" style="font-weight:700;color:#92400e;font-size:12px;margin-top:4px">Illustrative decision rule; thresholds are untuned</div>
+    </div>
+    <div class="small"><b>NOT IMPLEMENTED</b></div>
+  </div>
+  <div style="display:flex;justify-content:space-around;color:#10b981;font-size:12px;line-height:8px"><span>▼</span><span style="color:#ef4444">▼</span></div>
+  <div style="display:flex;gap:10px;flex:1">
+    <div style="flex:1;background:#f0fdf9;border:2px solid #10b981;border-radius:10px;padding:8px;display:flex;flex-direction:column;text-align:center">
+      <div class="title" style="background:#059669;font-size:10.5px;padding:6px">NOT IMPLEMENTED · EXAMPLE ONLY</div>
+      <div style="font-weight:700;color:#065f46;font-size:9.5px;margin:8px 0 4px">Modal consensus answer (y*)</div>
+      <div class="kur" style="font-size:15px;font-weight:700;color:#047857;line-height:1.7;padding:4px 0">لە ساڵی ١٧٨٤ لەلایەن ئیبراهیم پاشای بابانەوە گوازرایەوە</div>
+      <div class="small">Gloss: “Transferred in 1784 by Ibrahim Pasha of Baban”</div>
+      <div style="flex:1"></div>
+      <div style="background:#a7f3d0;border:1.5px solid #34d399;border-radius:6px;padding:4px;font-size:9.5px;font-weight:700;color:#065f46;margin-top:6px">Illustrative output (hand-written example, not a measured result)</div>
+      <div style="background:#a7f3d0;border:1.5px solid #34d399;border-radius:6px;padding:4px;font-size:9.5px;font-weight:700;color:#065f46;margin-top:5px">No generator was run: EM / FactScore not measured</div>
+    </div>
+    <div style="flex:1;background:#fff5f5;border:2px solid #ef4444;border-radius:10px;padding:8px;display:flex;flex-direction:column;text-align:center">
+      <div class="title" style="background:#dc2626;font-size:10.5px;padding:6px">NOT IMPLEMENTED · EXAMPLE ONLY</div>
+      <div style="font-weight:700;color:#991b1b;font-size:9.5px;margin:8px 0 4px">Calibrated refusal triggered</div>
+      <div class="kur" style="font-size:15px;font-weight:700;color:#b91c1c;line-height:1.7;padding:4px 0">زانیاری پێویست لە بەردەستدا نییە</div>
+      <div class="small">Gloss: “I do not have sufficient verified facts in context”</div>
+      <div style="flex:1"></div>
+      <div style="background:#fecaca;border:1.5px solid #f87171;border-radius:6px;padding:4px;font-size:9.5px;font-weight:700;color:#991b1b;margin-top:6px">Illustrative refusal text (design only)</div>
+      <div style="background:#fecaca;border:1.5px solid #f87171;border-radius:6px;padding:4px;font-size:9.5px;font-weight:700;color:#991b1b;margin-top:5px">Hallucination / calibration: not measured</div>
+    </div>
+  </div>
+</div>
+</div>
+</body></html>

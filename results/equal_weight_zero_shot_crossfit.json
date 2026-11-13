@@ -1,0 +1,69 @@
+{
+  "protocol": {
+    "description": "Fixed one-third weights for cross-fitted char-4gram BM25, zero-shot E5, and zero-shot BGE-M3; scores are z-scored per query before fusion.",
+    "outer_folds": 3,
+    "outer_partition_seeds": [
+      42,
+      2025
+    ],
+    "queries": 492,
+    "candidate_passages_per_query": 164
+  },
+  "zero_shot_equal_weight_fusion": {
+    "MRR@10": 99.09988385598142,
+    "MRR@10_CI95": [
+      98.51644163763066,
+      99.59349593495935
+    ],
+    "Recall@1": 98.3739837398374
+  },
+  "difference_from_char4_bm25": {
+    "MRR@10_difference_points": 0.14578493999225708,
+    "paired_bootstrap_CI95": [
+      -0.338965108401084,
+      0.6897260936895078
+    ],
+    "paired_bootstrap_p_two_sided": 0.599,
+    "holm_adjusted_p_two_sided": 1.0
+  },
+  "fine_tuned_equal_weight_minus_zero_shot_equal_weight": {
+    "MRR@10_difference_points": 0.10962704865143885,
+    "paired_bootstrap_CI95": [
+      -0.2503871467286102,
+      0.4529939347012517
+    ],
+    "paired_bootstrap_p_two_sided": 0.513,
+    "holm_adjusted_p_two_sided": 1.0
+  },
+  "equal_weight_paired_comparisons": {
+    "zero_shot_equal_weight_minus_char4": {
+      "MRR@10_difference_points": 0.14578493999225708,
+      "paired_bootstrap_CI95": [
+        -0.338965108401084,
+        0.6897260936895078
+      ],
+      "paired_bootstrap_p_two_sided": 0.599,
+      "holm_adjusted_p_two_sided": 1.0
+    },
+    "fine_tuned_equal_weight_minus_char4": {
+      "MRR@10_points": 0.25541198864369596,
+      "paired_bootstrap_CI95": [
+        -0.11017651471157566,
+        0.6751367111885404
+      ],
+      "paired_bootstrap_p_two_sided": 0.182,
+      "comparison_reference": "same held-out queries averaged across outer partitions",
+      "MRR@10_difference_points": 0.25541198864369596,
+      "holm_adjusted_p_two_sided": 0.546
+    },
+    "fine_tuned_equal_weight_minus_zero_shot_equal_weight": {
+      "MRR@10_difference_points": 0.10962704865143885,
+      "paired_bootstrap_CI95": [
+        -0.2503871467286102,
+        0.4529939347012517
+      ],
+      "paired_bootstrap_p_two_sided": 0.513,
+      "holm_adjusted_p_two_sided": 1.0
+    }
+  }
+}

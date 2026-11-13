@@ -1,0 +1,34 @@
+{
+  "protocol": {
+    "test_queries": 447,
+    "candidate_passages": 488,
+    "weights_char4_finetuned_e5_bge": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "model": "news-trained E5, raw text, seed 1, learning rate 1e-5, two epochs",
+    "source": "Pewan is not used in this experiment"
+  },
+  "equal_weight_fusion": {
+    "MRR@10": 83.15551649444267,
+    "Recall@1": 78.29977628635348
+  },
+  "BM25_char4": {
+    "MRR@10": 79.10070665104222
+  },
+  "difference_from_char4": {
+    "MRR@10_points": 4.054809843400448,
+    "passage_cluster_CI95": [
+      1.9502709407567345,
+      6.186406314951547
+    ]
+  },
+  "difference_from_validation_selected_fusion": {
+    "MRR@10_points": -0.4253222541813145,
+    "passage_cluster_CI95": [
+      -1.5619891401391537,
+      0.7162124803781975
+    ]
+  }
+}

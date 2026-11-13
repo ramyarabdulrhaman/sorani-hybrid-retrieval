@@ -1,0 +1,33 @@
+{
+ "protocol": {
+  "stage": "scoring/ranking given precomputed query representations",
+  "excludes": "query encoding, model loading, tokenization, and index construction",
+  "not_end_to_end_latency": true,
+  "queries": 492,
+  "candidate_passages": 492,
+  "repeats": 5,
+  "aggregation": "median of repeats divided by the number of queries",
+  "machine": {
+   "platform": "Windows-11-10.0.26300-SP0",
+   "processor": "Intel64 Family 6 Model 158 Stepping 13, GenuineIntel",
+   "python": "3.12.10",
+   "numpy": "2.4.4",
+   "cpu_count": 16
+  },
+  "index_build_seconds": {
+   "BM25 (word)": 0.09499529999447986,
+   "BM25 (morpheme stems)": 0.23052779998397455,
+   "BM25 (char 4-gram)": 0.30828949995338917
+  }
+ },
+ "scoring_ms_per_query": {
+  "BM25 (word)": 0.3069518292530977,
+  "BM25 (morpheme stems)": 0.30864329265176915,
+  "BM25 (char 4-gram)": 2.5164225609354083,
+  "multilingual-e5-base": 0.0020839431042957114,
+  "bge-m3 (dense)": 0.002427845559181358,
+  "RRF (BM25 stems + e5-base)": 0.026601422776854258,
+  "RRF (BM25 stems + bge-m3)": 0.029935162681026188,
+  "RRF (BM25 stems + e5-base + bge-m3)": 0.04066951214184424
+ }
+}

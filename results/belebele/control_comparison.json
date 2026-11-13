@@ -1,0 +1,8 @@
+{
+  "proposed_minus_zero_shot_fusion_MRR@10": 1.7183338659848728,
+  "CI95_passage_cluster_bootstrap": [
+    0.43762042522119593,
+    3.0655244025742285
+  ],
+  "bootstrap_resamples": 5000
+}

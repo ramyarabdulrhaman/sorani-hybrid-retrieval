@@ -1,0 +1,12 @@
+System,Recall@1,MRR@10,MRR@10 95% CI,SD over 5 training seeds (2 partitions)
+BM25 (word),96.34,97.42,"[96.17, 98.52]",0.00
+BM25 (morpheme stems),96.24,97.41,"[96.18, 98.48]",0.00
+BM25 (char 4-gram),98.17,98.95,"[98.26, 99.50]",0.00
+multilingual-e5-base zero-shot,76.32,83.22,"[80.50, 85.81]",0.00
+bge-m3 zero-shot,91.67,94.06,"[92.15, 95.71]",0.00
+Hybrid RRF (BM25 char 4-gram + bge-m3),95.12,97.21,"[96.14, 98.16]",0.00
+Fusion of zero-shot components (tuned weights),97.83,98.78,"[98.15, 99.34]",0.29
+e5-base fine-tuned (selected config),92.34,95.20,"[93.92, 96.44]",0.36
+Validation-tuned fusion (fine-tuned E5 + char-4gram BM25 + bge-m3),98.19,98.98,"[98.39, 99.44]",0.10
+Zero-shot equal-weight fusion,98.37,99.10,"[98.52, 99.59]",0.00
+Fine-tuned equal-weight fusion,98.58,99.21,"[98.64, 99.68]",0.11

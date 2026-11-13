@@ -1,0 +1,161 @@
+{
+  "protocol": {
+    "dataset_revision": "7899cdfa4e1e0d733fd77c848e2c273cb1d32be2",
+    "dataset_sha256": "b7aa4cb5c9ee985c1293615d91a9c25419e735ac83b98068a31830413a8cb053",
+    "license": "CC BY-SA 4.0",
+    "warning": "Exploratory split of already inspected public test data; not an independent benchmark.",
+    "passage_split_seed": 77,
+    "train_val_test_passages": [
+      244,
+      122,
+      122
+    ],
+    "train_val_test_questions": [
+      452,
+      229,
+      219
+    ],
+    "candidates": 488,
+    "training": "One first question per training passage; no news data",
+    "training_seeds": [
+      1,
+      2,
+      3
+    ],
+    "epochs": 2,
+    "learning_rate": 1e-05,
+    "fusion": "Validation-only grid 0.1; proposed requires fine-tuned weight >= 0.1",
+    "bootstrap": "5000 paired passage-cluster resamples, seed 42, of seed-averaged per-query RR; models and weights fixed",
+    "model_revisions": {
+      "e5": [
+        "intfloat/multilingual-e5-base",
+        "d128750597153bb5987e10b1c3493a34e5a4502a",
+        "mean"
+      ],
+      "bge": [
+        "BAAI/bge-m3",
+        "5617a9f61b028005a4858fdac845db406aefb181",
+        "cls"
+      ]
+    },
+    "device": "cuda",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.20.2",
+    "python": "3.12.10"
+  },
+  "zero_shot_selection": {
+    "weights": [
+      0.4,
+      0.2,
+      0.4
+    ],
+    "validation_MRR@10": 82.58473695154917
+  },
+  "selection": [
+    {
+      "seed": 1,
+      "weights": [
+        0.4,
+        0.3,
+        0.3
+      ],
+      "validation_MRR@10": 87.01722464822902
+    },
+    {
+      "seed": 2,
+      "weights": [
+        0.4,
+        0.5,
+        0.1
+      ],
+      "validation_MRR@10": 87.33849726207804
+    },
+    {
+      "seed": 3,
+      "weights": [
+        0.4,
+        0.4,
+        0.2
+      ],
+      "validation_MRR@10": 87.19120399251403
+    }
+  ],
+  "systems": {
+    "BM25 char-4gram": {
+      "Recall@1": 77.1689497716895,
+      "Recall@5": 90.41095890410958,
+      "MRR@10": 82.77777777777776,
+      "MRR@10_per_seed": [
+        82.77777777777776,
+        82.77777777777776,
+        82.77777777777776
+      ]
+    },
+    "E5 zero-shot": {
+      "Recall@1": 38.35616438356164,
+      "Recall@5": 61.18721461187214,
+      "MRR@10": 48.360875552656374,
+      "MRR@10_per_seed": [
+        48.360875552656374,
+        48.360875552656374,
+        48.360875552656374
+      ]
+    },
+    "BGE-M3 zero-shot": {
+      "Recall@1": 43.83561643835616,
+      "Recall@5": 63.4703196347032,
+      "MRR@10": 52.44962673044865,
+      "MRR@10_per_seed": [
+        52.44962673044865,
+        52.44962673044865,
+        52.44962673044865
+      ]
+    },
+    "Zero-shot fusion": {
+      "Recall@1": 78.99543378995433,
+      "Recall@5": 90.8675799086758,
+      "MRR@10": 84.07787924911212,
+      "MRR@10_per_seed": [
+        84.07787924911212,
+        84.07787924911212,
+        84.07787924911212
+      ]
+    },
+    "E5 Belebele-trained": {
+      "Recall@1": 61.339421613394215,
+      "Recall@5": 79.75646879756468,
+      "MRR@10": 69.34985866492715,
+      "MRR@10_per_seed": [
+        69.5870479089657,
+        69.43737769080234,
+        69.0251503950134
+      ]
+    },
+    "Proposed Belebele-trained fusion": {
+      "Recall@1": 81.12633181126331,
+      "Recall@5": 92.99847792998477,
+      "MRR@10": 86.53795511101447,
+      "MRR@10_per_seed": [
+        86.94553163731246,
+        86.00057983619627,
+        86.66775385953467
+      ]
+    }
+  },
+  "comparisons": {
+    "BM25 char-4gram": {
+      "MRR@10_difference": 3.7601773332366943,
+      "CI95_passage_cluster": [
+        1.1162172885639865,
+        6.50703194935023
+      ]
+    },
+    "Zero-shot fusion": {
+      "MRR@10_difference": 2.460075861902346,
+      "CI95_passage_cluster": [
+        0.6364105873183729,
+        4.270327088086878
+      ]
+    }
+  }
+}

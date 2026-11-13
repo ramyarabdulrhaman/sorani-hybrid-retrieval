@@ -1,0 +1,309 @@
+{
+ "protocol": {
+  "content_word_definition": "normalized tokens of length >= 3",
+  "overlap_definition": "fraction of query content-word types present in the passage",
+  "char4_definition": "fraction of query character-4-gram types present in the passage",
+  "terciles": "within-task terciles of word overlap; Belebele restricted to the 447-question test split",
+  "headline_fusion": "fixed one-third zero-shot fusion on the full 492-passage collection",
+  "belebele_fusion": "validation-selected zero-shot fusion; fine-tuned variant reported separately",
+  "bootstrap_resamples": 5000,
+  "seed": 42,
+  "status": "descriptive post-hoc analysis of saved ranks"
+ },
+ "headline": {
+  "queries": 492,
+  "mean_word_overlap": 0.7480048632487658,
+  "median_word_overlap": 0.8,
+  "mean_char4_overlap": 0.8744434575970464,
+  "median_char4_overlap": 0.90625,
+  "fraction_word_overlap_ge_0.5": 0.8922764227642277,
+  "fraction_word_overlap_ge_0.8": 0.5101626016260162,
+  "fraction_char4_overlap_ge_0.8": 0.7723577235772358,
+  "random_pairing_mean_word_overlap": 0.0405531332093832,
+  "random_pairing_CI95": [
+   0.03391301576133893,
+   0.04791307735286393
+  ],
+  "terciles": [
+   {
+    "task": "Headline-to-article",
+    "tercile": "All",
+    "queries": 492,
+    "passages": 492,
+    "mean_word_overlap": 0.7480048632487658,
+    "median_word_overlap": 0.8,
+    "mean_char4_overlap": 0.8744434575970464,
+    "BM25_MRR10": 97.39159891598916,
+    "Fusion_MRR10": 97.76987353206866,
+    "difference": {
+     "difference_points": 0.37827461607949414,
+     "CI95": [
+      -0.3669828364950315,
+      1.1291779584462511
+     ],
+     "p_two_sided": 0.3092,
+     "wins": 12,
+     "losses": 6,
+     "ties": 474
+    }
+   },
+   {
+    "task": "Headline-to-article",
+    "tercile": "Low",
+    "queries": 170,
+    "passages": 170,
+    "mean_word_overlap": 0.5054324760207113,
+    "median_word_overlap": 0.5,
+    "mean_char4_overlap": 0.7545883432724144,
+    "BM25_MRR10": 94.2156862745098,
+    "Fusion_MRR10": 94.86928104575163,
+    "difference": {
+     "difference_points": 0.65359477124183,
+     "CI95": [
+      -1.4379084967320261,
+      2.7124183006535945
+     ],
+     "p_two_sided": 0.564,
+     "wins": 9,
+     "losses": 5,
+     "ties": 156
+    }
+   },
+   {
+    "task": "Headline-to-article",
+    "tercile": "Mid",
+    "queries": 161,
+    "passages": 161,
+    "mean_word_overlap": 0.7906201458996489,
+    "median_word_overlap": 0.8,
+    "mean_char4_overlap": 0.8960574695488415,
+    "BM25_MRR10": 98.96480331262939,
+    "Fusion_MRR10": 99.37888198757764,
+    "difference": {
+     "difference_points": 0.4140786749482402,
+     "CI95": [
+      0.0,
+      1.1387163561076605
+     ],
+     "p_two_sided": 0.2708,
+     "wins": 2,
+     "losses": 0,
+     "ties": 159
+    }
+   },
+   {
+    "task": "Headline-to-article",
+    "tercile": "High",
+    "queries": 161,
+    "passages": 161,
+    "mean_word_overlap": 0.961521914938064,
+    "median_word_overlap": 1.0,
+    "mean_char4_overlap": 0.9793845353048006,
+    "BM25_MRR10": 99.17184265010354,
+    "Fusion_MRR10": 99.22360248447205,
+    "difference": {
+     "difference_points": 0.05175983436853004,
+     "CI95": [
+      -0.15527950310559005,
+      0.3105590062111801
+     ],
+     "p_two_sided": 0.804,
+     "wins": 1,
+     "losses": 1,
+     "ties": 159
+    }
+   }
+  ]
+ },
+ "belebele": {
+  "queries": 447,
+  "passages": 244,
+  "mean_word_overlap": 0.2199817552192518,
+  "median_word_overlap": 0.18181818181818182,
+  "mean_char4_overlap": 0.4180114533926631,
+  "median_char4_overlap": 0.40476190476190477,
+  "fraction_word_overlap_ge_0.5": 0.10738255033557047,
+  "fraction_word_overlap_ge_0.8": 0.0044742729306487695,
+  "fraction_char4_overlap_ge_0.8": 0.013422818791946308,
+  "terciles": [
+   {
+    "task": "Belebele question-to-passage",
+    "tercile": "All",
+    "queries": 447,
+    "passages": 244,
+    "mean_word_overlap": 0.2199817552192518,
+    "median_word_overlap": 0.18181818181818182,
+    "mean_char4_overlap": 0.4180114533926631,
+    "BM25_MRR10": 79.10070665104222,
+    "Fusion_MRR10": 81.86250488263912,
+    "difference": {
+     "difference_points": 2.7617982315968894,
+     "CI95": [
+      1.254752491421226,
+      4.360229182813789
+     ],
+     "p_two_sided": 0.0002,
+     "wins": 52,
+     "losses": 29,
+     "ties": 366
+    }
+   },
+   {
+    "task": "Belebele question-to-passage",
+    "tercile": "Low",
+    "queries": 155,
+    "passages": 118,
+    "mean_word_overlap": 0.053840569336674395,
+    "median_word_overlap": 0.06666666666666667,
+    "mean_char4_overlap": 0.29565076800947554,
+    "BM25_MRR10": 57.428059395801334,
+    "Fusion_MRR10": 62.50307219662058,
+    "difference": {
+     "difference_points": 5.075012800819252,
+     "CI95": [
+      1.969435763888889,
+      8.53108107721203
+     ],
+     "p_two_sided": 0.0008,
+     "wins": 35,
+     "losses": 18,
+     "ties": 102
+    }
+   },
+   {
+    "task": "Belebele question-to-passage",
+    "tercile": "Mid",
+    "queries": 144,
+    "passages": 121,
+    "mean_word_overlap": 0.19221793717810873,
+    "median_word_overlap": 0.18181818181818182,
+    "mean_char4_overlap": 0.4035394521109551,
+    "BM25_MRR10": 86.25578703703704,
+    "Fusion_MRR10": 89.21571869488535,
+    "difference": {
+     "difference_points": 2.9599316578483243,
+     "CI95": [
+      0.6460982369311655,
+      5.521745926950592
+     ],
+     "p_two_sided": 0.008,
+     "wins": 13,
+     "losses": 6,
+     "ties": 125
+    }
+   },
+   {
+    "task": "Belebele question-to-passage",
+    "tercile": "High",
+    "queries": 148,
+    "passages": 108,
+    "mean_word_overlap": 0.4209944147444147,
+    "median_word_overlap": 0.38461538461538464,
+    "mean_char4_overlap": 0.5602403346018524,
+    "BM25_MRR10": 94.83671171171171,
+    "Fusion_MRR10": 94.9831081081081,
+    "difference": {
+     "difference_points": 0.14639639639639643,
+     "CI95": [
+      -1.7376455577918344,
+      2.19717584003298
+     ],
+     "p_two_sided": 0.9304,
+     "wins": 4,
+     "losses": 5,
+     "ties": 139
+    }
+   }
+  ],
+  "fine_tuned_terciles": [
+   {
+    "task": "Belebele (fine-tuned fusion)",
+    "tercile": "All",
+    "queries": 447,
+    "passages": 244,
+    "mean_word_overlap": 0.2199817552192518,
+    "median_word_overlap": 0.18181818181818182,
+    "mean_char4_overlap": 0.4180114533926631,
+    "BM25_MRR10": 79.10070665104222,
+    "Fusion_MRR10": 83.58083874862398,
+    "difference": {
+     "difference_points": 4.4801320975817625,
+     "CI95": [
+      2.677261993537161,
+      6.409377443824877
+     ],
+     "p_two_sided": 0.0002,
+     "wins": 62,
+     "losses": 23,
+     "ties": 362
+    }
+   },
+   {
+    "task": "Belebele (fine-tuned fusion)",
+    "tercile": "Low",
+    "queries": 155,
+    "passages": 118,
+    "mean_word_overlap": 0.053840569336674395,
+    "median_word_overlap": 0.06666666666666667,
+    "mean_char4_overlap": 0.29565076800947554,
+    "BM25_MRR10": 57.428059395801334,
+    "Fusion_MRR10": 66.1879160266257,
+    "difference": {
+     "difference_points": 8.759856630824373,
+     "CI95": [
+      4.618715708402869,
+      13.003804847347888
+     ],
+     "p_two_sided": 0.0002,
+     "wins": 42,
+     "losses": 14,
+     "ties": 99
+    }
+   },
+   {
+    "task": "Belebele (fine-tuned fusion)",
+    "tercile": "Mid",
+    "queries": 144,
+    "passages": 121,
+    "mean_word_overlap": 0.19221793717810873,
+    "median_word_overlap": 0.18181818181818182,
+    "mean_char4_overlap": 0.4035394521109551,
+    "BM25_MRR10": 86.25578703703704,
+    "Fusion_MRR10": 90.09149029982362,
+    "difference": {
+     "difference_points": 3.8357032627865966,
+     "CI95": [
+      1.4840959867555612,
+      6.478053034993986
+     ],
+     "p_two_sided": 0.0004,
+     "wins": 16,
+     "losses": 6,
+     "ties": 122
+    }
+   },
+   {
+    "task": "Belebele (fine-tuned fusion)",
+    "tercile": "High",
+    "queries": 148,
+    "passages": 108,
+    "mean_word_overlap": 0.4209944147444147,
+    "median_word_overlap": 0.38461538461538464,
+    "mean_char4_overlap": 0.5602403346018524,
+    "BM25_MRR10": 94.83671171171171,
+    "Fusion_MRR10": 95.4617117117117,
+    "difference": {
+     "difference_points": 0.625,
+     "CI95": [
+      -1.0919896877802235,
+      2.6020769418878658
+     ],
+     "p_two_sided": 0.5456,
+     "wins": 4,
+     "losses": 3,
+     "ties": 141
+    }
+   }
+  ]
+ }
+}

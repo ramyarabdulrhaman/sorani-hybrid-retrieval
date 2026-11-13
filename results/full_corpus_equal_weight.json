@@ -1,0 +1,45 @@
+{
+ "protocol": {
+  "task": "headline-to-article retrieval",
+  "queries": 492,
+  "candidate_passages": 492,
+  "fusion": "fixed one-third weights; per-query z-score of char-4gram BM25, zero-shot E5, and zero-shot BGE-M3",
+  "source": "recomputed from results/real_results.json inputs and cached embeddings",
+  "bootstrap_resamples": 5000,
+  "seed": 42
+ },
+ "data": {
+  "source_lines": 574,
+  "duplicate_lines_removed": 0,
+  "lines_without_headline_or_body": 82,
+  "articles": 492,
+  "source_sha256": "7e21d6a49c11a263e7fcce5eb83c8737bc6783563cc4fc0589dbadb8cd55aef3",
+  "mean_body_words": 148.8617886178862,
+  "mean_headline_words": 8.16260162601626
+ },
+ "systems": {
+  "BM25 char-4gram": {
+   "Recall@1": 95.52845528455285,
+   "Recall@5": 99.79674796747967,
+   "MRR@10": 97.39159891598916,
+   "nDCG@10": 98.00698570450146
+  },
+  "Zero-shot equal-weight fusion (full corpus)": {
+   "Recall@1": 96.13821138211382,
+   "Recall@5": 99.79674796747967,
+   "MRR@10": 97.76987353206866,
+   "nDCG@10": 98.33234684274656
+  }
+ },
+ "difference_from_char4": {
+  "MRR@10_points": 0.37827461607949414,
+  "paired_bootstrap_CI95": [
+   -0.3669828364950315,
+   1.1291779584462511
+  ],
+  "paired_bootstrap_p_two_sided": 0.3092,
+  "wins": 12,
+  "losses": 6,
+  "ties": 474
+ }
+}

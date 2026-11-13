@@ -1,0 +1,223 @@
+{
+  "protocol": {
+    "dataset": "facebook/belebele ckb_Arab",
+    "dataset_revision": "7899cdfa4e1e0d733fd77c848e2c273cb1d32be2",
+    "dataset_sha256": "b7aa4cb5c9ee985c1293615d91a9c25419e735ac83b98068a31830413a8cb053",
+    "dataset_license": "CC BY-SA 4.0",
+    "task": "question to linked passage retrieval; unjudged passages treated as non-relevant",
+    "limitation": "original multiple-choice test adapted for retrieval; linked passage is not an exhaustive relevance judgment",
+    "seed": 42,
+    "passage_grouped_validation_fraction": 0.5,
+    "validation_questions": 453,
+    "test_questions": 447,
+    "validation_passages": 244,
+    "test_passages": 244,
+    "candidate_passages_for_all_queries": 488,
+    "tie_policy": "pessimistic gold rank; RRF uses existing implementation",
+    "bootstrap": "5000 paired resamples of test passage groups",
+    "models": {
+      "e5": [
+        "intfloat/multilingual-e5-base",
+        "d128750597153bb5987e10b1c3493a34e5a4502a",
+        "mean"
+      ],
+      "bge": [
+        "BAAI/bge-m3",
+        "5617a9f61b028005a4858fdac845db406aefb181",
+        "cls"
+      ]
+    },
+    "device": "cuda",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.20.2",
+    "python": "3.12.10",
+    "news_training_source": {
+      "source_lines": 574,
+      "duplicate_lines_removed": 0,
+      "lines_without_headline_or_body": 82,
+      "articles": 492,
+      "source_sha256": "7e21d6a49c11a263e7fcce5eb83c8737bc6783563cc4fc0589dbadb8cd55aef3",
+      "mean_body_words": 148.8617886178862,
+      "mean_headline_words": 8.16260162601626
+    },
+    "training_seed": 1,
+    "training_lr": 1e-05,
+    "training_epochs": 2,
+    "training_mode": "raw",
+    "training_note": "New full-news model with configuration most frequently selected in prior study; not the original cross-fitted checkpoints.",
+    "validation_note": "Validation partition is carved out of the public Belebele test set; it is not an official development set."
+  },
+  "validation_selection": {
+    "zero_shot_weights_char4_e5_bge": [
+      0.5,
+      0.2,
+      0.3
+    ],
+    "zero_shot_MRR@10": 84.11314341777918,
+    "proposed_weights_char4_finetuned_e5_bge": [
+      0.5,
+      0.3,
+      0.2
+    ],
+    "proposed_MRR@10": 85.91173481901959,
+    "grid": "nonnegative weights on 0.1 grid, sum 1; proposed requires fine-tuned E5 weight >= 0.1"
+  },
+  "test_systems": {
+    "BM25 word": {
+      "Recall@1": 48.769574944071586,
+      "Recall@5": 66.2192393736018,
+      "Recall@10": 70.24608501118567,
+      "Recall@20": 75.83892617449665,
+      "MRR@10": 55.53638010013848,
+      "nDCG@10": 59.08370686559176,
+      "MRR@10_difference_vs_char4": -23.56432655090373,
+      "difference_CI95_passage_cluster_bootstrap": [
+        -27.724685585295063,
+        -19.442499183168003
+      ]
+    },
+    "BM25 stems": {
+      "Recall@1": 52.12527964205817,
+      "Recall@5": 68.68008948545862,
+      "Recall@10": 74.72035794183445,
+      "Recall@20": 79.86577181208054,
+      "MRR@10": 58.905933738148505,
+      "nDCG@10": 62.68501800306107,
+      "MRR@10_difference_vs_char4": -20.194772912893722,
+      "difference_CI95_passage_cluster_bootstrap": [
+        -24.248053712652748,
+        -16.277743818580667
+      ]
+    },
+    "BM25 char-4gram": {
+      "Recall@1": 72.25950782997764,
+      "Recall@5": 87.91946308724832,
+      "Recall@10": 91.94630872483222,
+      "Recall@20": 94.40715883668904,
+      "MRR@10": 79.10070665104222,
+      "nDCG@10": 82.22190693004133,
+      "MRR@10_difference_vs_char4": 0.0,
+      "difference_CI95_passage_cluster_bootstrap": [
+        0.0,
+        0.0
+      ]
+    },
+    "E5 zero-shot": {
+      "Recall@1": 29.082774049217004,
+      "Recall@5": 52.12527964205817,
+      "Recall@10": 59.73154362416108,
+      "Recall@20": 70.24608501118567,
+      "MRR@10": 38.70370370370371,
+      "nDCG@10": 43.748136652305355,
+      "MRR@10_difference_vs_char4": -40.397002947338514,
+      "difference_CI95_passage_cluster_bootstrap": [
+        -45.008520011947425,
+        -35.60955531861032
+      ]
+    },
+    "BGE-M3 zero-shot": {
+      "Recall@1": 37.8076062639821,
+      "Recall@5": 55.92841163310962,
+      "Recall@10": 62.86353467561522,
+      "Recall@20": 68.45637583892618,
+      "MRR@10": 45.7505060189624,
+      "nDCG@10": 49.85035949241004,
+      "MRR@10_difference_vs_char4": -33.350200632079826,
+      "difference_CI95_passage_cluster_bootstrap": [
+        -37.93767686814425,
+        -28.572497558166017
+      ]
+    },
+    "RRF stems + E5": {
+      "Recall@1": 44.07158836689038,
+      "Recall@5": 65.99552572706935,
+      "Recall@10": 76.7337807606264,
+      "Recall@20": 83.66890380313198,
+      "MRR@10": 54.3396008664465,
+      "nDCG@10": 59.68851383539287,
+      "MRR@10_difference_vs_char4": -24.76110578459572,
+      "difference_CI95_passage_cluster_bootstrap": [
+        -29.17545670670671,
+        -20.403986488170787
+      ]
+    },
+    "RRF stems + BGE-M3": {
+      "Recall@1": 50.55928411633109,
+      "Recall@5": 67.56152125279642,
+      "Recall@10": 75.6152125279642,
+      "Recall@20": 81.87919463087249,
+      "MRR@10": 57.881556052697,
+      "nDCG@10": 62.07949894872008,
+      "MRR@10_difference_vs_char4": -21.21915059834523,
+      "difference_CI95_passage_cluster_bootstrap": [
+        -25.451967940139614,
+        -17.11154625614388
+      ]
+    },
+    "RRF stems + E5 + BGE-M3": {
+      "Recall@1": 50.33557046979866,
+      "Recall@5": 73.15436241610739,
+      "Recall@10": 81.20805369127517,
+      "Recall@20": 87.69574944071589,
+      "MRR@10": 59.63522247079295,
+      "nDCG@10": 64.78846959961902,
+      "MRR@10_difference_vs_char4": -19.46548418024928,
+      "difference_CI95_passage_cluster_bootstrap": [
+        -23.46178249629506,
+        -15.535310351211633
+      ]
+    },
+    "RRF char-4gram + BGE-M3": {
+      "Recall@1": 57.494407158836694,
+      "Recall@5": 74.04921700223713,
+      "Recall@10": 81.65548098434004,
+      "Recall@20": 89.48545861297539,
+      "MRR@10": 64.96608785199389,
+      "nDCG@10": 68.94673844370438,
+      "MRR@10_difference_vs_char4": -14.134618799048331,
+      "difference_CI95_passage_cluster_bootstrap": [
+        -18.064674443020856,
+        -10.352389622492923
+      ]
+    },
+    "E5 news-fine-tuned": {
+      "Recall@1": 56.82326621923938,
+      "Recall@5": 75.83892617449665,
+      "Recall@10": 81.65548098434004,
+      "Recall@20": 85.68232662192393,
+      "MRR@10": 65.21874223216506,
+      "nDCG@10": 69.19180362835617,
+      "MRR@10_difference_vs_char4": -13.881964418877171,
+      "difference_CI95_passage_cluster_bootstrap": [
+        -18.332071806365175,
+        -9.446981699492863
+      ]
+    },
+    "Zero-shot fusion": {
+      "Recall@1": 76.28635346756153,
+      "Recall@5": 88.81431767337807,
+      "Recall@10": 92.39373601789708,
+      "Recall@20": 94.1834451901566,
+      "MRR@10": 81.86250488263912,
+      "nDCG@10": 84.41961188989822,
+      "MRR@10_difference_vs_char4": 2.7617982315968894,
+      "difference_CI95_passage_cluster_bootstrap": [
+        1.254752491421226,
+        4.360229182813789
+      ]
+    },
+    "Proposed cross-domain variant": {
+      "Recall@1": 78.29977628635348,
+      "Recall@5": 90.1565995525727,
+      "Recall@10": 93.73601789709173,
+      "Recall@20": 95.74944071588367,
+      "MRR@10": 83.58083874862398,
+      "nDCG@10": 86.04212673277397,
+      "MRR@10_difference_vs_char4": 4.480132097581762,
+      "difference_CI95_passage_cluster_bootstrap": [
+        2.6772619935371615,
+        6.4093774438248765
+      ]
+    }
+  }
+}

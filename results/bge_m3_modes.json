@@ -1,0 +1,166 @@
+{
+  "protocol": {
+    "model": "BAAI/bge-m3",
+    "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "dense": "CLS pooling, L2 normalized",
+    "sparse": "ReLU(sparse_linear(hidden)); max weight per input token; sparse dot product",
+    "multi_vector": "L2-normalized colbert_linear(hidden); late interaction (sum of max dot products)",
+    "combined": "equal-weight sum of per-query z-scored dense, sparse, and multi-vector scores",
+    "passage_max_pieces": 512,
+    "query_max_pieces": 128,
+    "device": "cuda",
+    "bootstrap_resamples": 5000,
+    "seed": 42,
+    "headline": "492 queries over 492 passages",
+    "belebele": "447 test questions over 488 passages, same split as belebele_experiment.py",
+    "note": "sparse_linear.pt and colbert_linear.pt from the pinned BGE-M3 revision; the dense encoder is the same checkpoint used elsewhere."
+  },
+  "headline": {
+    "n_queries": 492,
+    "n_passages": 492,
+    "systems": {
+      "BGE-M3 dense": {
+        "Recall@1": 84.14634146341463,
+        "Recall@5": 94.91869918699187,
+        "Recall@10": 97.15447154471545,
+        "MRR@10": 88.76564718028132,
+        "MRR@10_CI95": [
+          86.43433023615951,
+          91.07857062201573
+        ],
+        "nDCG@10": 90.81737443197301
+      },
+      "BGE-M3 sparse": {
+        "Recall@1": 82.3170731707317,
+        "Recall@5": 93.69918699186992,
+        "Recall@10": 95.73170731707317,
+        "MRR@10": 87.26416311782165,
+        "MRR@10_CI95": [
+          84.6783052651955,
+          89.69125048393342
+        ],
+        "nDCG@10": 89.34953483685148,
+        "vs_dense": {
+          "mean_MRR@10_diff": -1.5014840624596724,
+          "CI95": [
+            -3.886410746547942,
+            0.9207841334365697
+          ],
+          "p_two_sided": 0.222
+        }
+      },
+      "BGE-M3 multi-vector": {
+        "Recall@1": 92.6829268292683,
+        "Recall@5": 98.57723577235772,
+        "Recall@10": 98.98373983739837,
+        "MRR@10": 95.09993224932249,
+        "MRR@10_CI95": [
+          93.4433858401084,
+          96.6108993902439
+        ],
+        "nDCG@10": 96.06860363929188,
+        "vs_dense": {
+          "mean_MRR@10_diff": 6.334285069041166,
+          "CI95": [
+            4.561947509356046,
+            8.25157479997419
+          ],
+          "p_two_sided": 0.0002
+        }
+      },
+      "BGE-M3 dense+sparse+multi-vector": {
+        "Recall@1": 92.27642276422763,
+        "Recall@5": 98.17073170731707,
+        "Recall@10": 98.98373983739837,
+        "MRR@10": 94.88756613756613,
+        "MRR@10_CI95": [
+          93.21549554781262,
+          96.44471060782035
+        ],
+        "nDCG@10": 95.90797541167913,
+        "vs_dense": {
+          "mean_MRR@10_diff": 6.1219189572848105,
+          "CI95": [
+            4.3926635694928375,
+            8.013808233320429
+          ],
+          "p_two_sided": 0.0002
+        }
+      }
+    }
+  },
+  "belebele_test": {
+    "n_queries": 900,
+    "n_passages": 488,
+    "systems": {
+      "BGE-M3 dense": {
+        "Recall@1": 38.47874720357942,
+        "Recall@5": 56.152125279642064,
+        "Recall@10": 63.534675615212535,
+        "MRR@10": 46.42004900394162,
+        "MRR@10_CI95": [
+          42.324873051383115,
+          50.58203277582472
+        ],
+        "nDCG@10": 50.513733102902016
+      },
+      "BGE-M3 sparse": {
+        "Recall@1": 35.34675615212528,
+        "Recall@5": 52.348993288590606,
+        "Recall@10": 58.38926174496645,
+        "MRR@10": 42.04742374205462,
+        "MRR@10_CI95": [
+          37.90905196903519,
+          46.18307011469763
+        ],
+        "nDCG@10": 45.93392417159668,
+        "vs_dense": {
+          "mean_MRR@10_diff": -4.372625261887006,
+          "CI95": [
+            -8.440946699335962,
+            -0.4071033521537021
+          ],
+          "p_two_sided": 0.0316
+        }
+      },
+      "BGE-M3 multi-vector": {
+        "Recall@1": 50.33557046979866,
+        "Recall@5": 68.90380313199105,
+        "Recall@10": 74.04921700223713,
+        "MRR@10": 58.410745357054076,
+        "MRR@10_CI95": [
+          54.436108447853414,
+          62.4134552217606
+        ],
+        "nDCG@10": 62.21206515125124,
+        "vs_dense": {
+          "mean_MRR@10_diff": 11.99069635311246,
+          "CI95": [
+            9.34927958879301,
+            14.771161801782606
+          ],
+          "p_two_sided": 0.0002
+        }
+      },
+      "BGE-M3 dense+sparse+multi-vector": {
+        "Recall@1": 52.348993288590606,
+        "Recall@5": 70.69351230425056,
+        "Recall@10": 77.62863534675614,
+        "MRR@10": 60.234011576293454,
+        "MRR@10_CI95": [
+          56.16291369269558,
+          64.22930648769575
+        ],
+        "nDCG@10": 64.39367220027395,
+        "vs_dense": {
+          "mean_MRR@10_diff": 13.813962572351834,
+          "CI95": [
+            11.039334096800541,
+            16.68373814850325
+          ],
+          "p_two_sided": 0.0002
+        }
+      }
+    }
+  }
+}

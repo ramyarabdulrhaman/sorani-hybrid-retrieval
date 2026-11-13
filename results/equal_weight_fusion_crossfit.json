@@ -1,0 +1,473 @@
+{
+  "protocol": {
+    "description": "Fixed one-third weights for char-4gram BM25, selected fine-tuned E5, and zero-shot bge-m3.",
+    "outer_folds": 3,
+    "outer_partition_seeds": [
+      42,
+      2025
+    ],
+    "training_seeds": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "selected_models": "Loaded from saved selected fold/seed checkpoints."
+  },
+  "equal_weight_fusion": {
+    "MRR@10": 99.20951090463286,
+    "MRR@10_CI95": [
+      98.6447928765002,
+      99.6781842818428
+    ],
+    "Recall@1": 98.57723577235772,
+    "seed_mean_mrr10": [
+      99.15481029810299,
+      99.31583914053425,
+      99.31261291779585,
+      99.20150987224157,
+      99.06278229448961
+    ]
+  },
+  "difference_from_validation_selected_fusion": {
+    "MRR@10_points": 0.23161842495805918,
+    "paired_bootstrap_CI95": [
+      0.06774194097625502,
+      0.4148918750000002
+    ],
+    "comparison_reference": "saved per-query reciprocal ranks from the same corrected run"
+  },
+  "difference_from_char4_bm25": {
+    "MRR@10_points": 0.25541198864369596,
+    "paired_bootstrap_CI95": [
+      -0.11017651471157566,
+      0.6751367111885404
+    ],
+    "paired_bootstrap_p_two_sided": 0.182,
+    "comparison_reference": "same held-out queries averaged across outer partitions",
+    "MRR@10_difference_points": 0.25541198864369596
+  },
+  "settings": [
+    {
+      "partition_seed": 42,
+      "training_seed": 1,
+      "outer_fold": 0,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 100.0
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 1,
+      "outer_fold": 1,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 98.78048780487805
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 1,
+      "outer_fold": 2,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 4e-05,
+      "epochs": 2,
+      "test_mrr10": 98.6280487804878
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 2,
+      "outer_fold": 0,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 2e-05,
+      "epochs": 4,
+      "test_mrr10": 100.0
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 2,
+      "outer_fold": 1,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 98.78048780487805
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 2,
+      "outer_fold": 2,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 98.85670731707317
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 3,
+      "outer_fold": 0,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 100.0
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 3,
+      "outer_fold": 1,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 98.78048780487805
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 3,
+      "outer_fold": 2,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 98.85670731707317
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 4,
+      "outer_fold": 0,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "split",
+      "learning_rate": 1e-05,
+      "epochs": 8,
+      "test_mrr10": 100.0
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 4,
+      "outer_fold": 1,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 98.47560975609755
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 4,
+      "outer_fold": 2,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "split",
+      "learning_rate": 2e-05,
+      "epochs": 4,
+      "test_mrr10": 98.86759581881532
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 5,
+      "outer_fold": 0,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 100.0
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 5,
+      "outer_fold": 1,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "split",
+      "learning_rate": 2e-05,
+      "epochs": 2,
+      "test_mrr10": 98.17073170731707
+    },
+    {
+      "partition_seed": 42,
+      "training_seed": 5,
+      "outer_fold": 2,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 4e-05,
+      "epochs": 4,
+      "test_mrr10": 98.98373983739836
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 1,
+      "outer_fold": 0,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 98.84146341463415
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 1,
+      "outer_fold": 1,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 99.39024390243902
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 1,
+      "outer_fold": 2,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 99.28861788617886
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 2,
+      "outer_fold": 0,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 98.86759581881532
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 2,
+      "outer_fold": 1,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 4e-05,
+      "epochs": 2,
+      "test_mrr10": 99.6951219512195
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 2,
+      "outer_fold": 2,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 99.6951219512195
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 3,
+      "outer_fold": 0,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 98.84823848238482
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 3,
+      "outer_fold": 1,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 2e-05,
+      "epochs": 4,
+      "test_mrr10": 99.6951219512195
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 3,
+      "outer_fold": 2,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 4,
+      "test_mrr10": 99.6951219512195
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 4,
+      "outer_fold": 0,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 98.78048780487805
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 4,
+      "outer_fold": 1,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 99.39024390243902
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 4,
+      "outer_fold": 2,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 99.6951219512195
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 5,
+      "outer_fold": 0,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 98.54336043360435
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 5,
+      "outer_fold": 1,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 2,
+      "test_mrr10": 99.39024390243902
+    },
+    {
+      "partition_seed": 2025,
+      "training_seed": 5,
+      "outer_fold": 2,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "selected_encoder_mode": "raw",
+      "learning_rate": 1e-05,
+      "epochs": 6,
+      "test_mrr10": 99.28861788617886
+    }
+  ]
+}

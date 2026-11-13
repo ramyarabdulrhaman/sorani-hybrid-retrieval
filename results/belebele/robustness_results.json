@@ -1,0 +1,273 @@
+{
+  "protocol": {
+    "purpose": "Exploratory robustness check after observing the earlier test results; not an untouched independent test.",
+    "dataset_revision": "7899cdfa4e1e0d733fd77c848e2c273cb1d32be2",
+    "dataset_sha256": "b7aa4cb5c9ee985c1293615d91a9c25419e735ac83b98068a31830413a8cb053",
+    "news_training_source": {
+      "source_lines": 574,
+      "duplicate_lines_removed": 0,
+      "lines_without_headline_or_body": 82,
+      "articles": 492,
+      "source_sha256": "7e21d6a49c11a263e7fcce5eb83c8737bc6783563cc4fc0589dbadb8cd55aef3",
+      "mean_body_words": 148.8617886178862,
+      "mean_headline_words": 8.16260162601626
+    },
+    "training_seeds": [
+      1,
+      2,
+      3
+    ],
+    "training_config": {
+      "lr": 1e-05,
+      "epochs": 2,
+      "text": "raw"
+    },
+    "split_seed": 2026,
+    "folds": 3,
+    "passages": 488,
+    "questions": 900,
+    "candidate_passages_per_query": 488,
+    "selection": "Per fold and training seed, tune fusion weights on all questions in the other two passage groups; held-out group only for scoring.",
+    "grid": "nonnegative weights on 0.1 grid; proposed has fine-tuned component >= 0.1; control unconstrained",
+    "uncertainty": "Paired 5000-resample passage-cluster bootstrap on seed-averaged per-query reciprocal rank; conditional on folds, selected weights, and three trained models.",
+    "caveats": "One grouped three-fold partition; public test data previously inspected; incomplete relevance labels; news licence unconfirmed; pretraining exposure not ruled out.",
+    "model_revisions": {
+      "e5": [
+        "intfloat/multilingual-e5-base",
+        "d128750597153bb5987e10b1c3493a34e5a4502a",
+        "mean"
+      ],
+      "bge": [
+        "BAAI/bge-m3",
+        "5617a9f61b028005a4858fdac845db406aefb181",
+        "cls"
+      ]
+    },
+    "device": "cuda",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.20.2",
+    "python": "3.12.10"
+  },
+  "fold_selection": [
+    {
+      "training_seed": 1,
+      "test_fold": 0,
+      "validation_questions": 594,
+      "test_questions": 306,
+      "zero_shot_weights": [
+        0.5,
+        0.2,
+        0.3
+      ],
+      "zero_shot_validation_mrr10": 81.70528031639142,
+      "proposed_weights": [
+        0.5,
+        0.3,
+        0.2
+      ],
+      "proposed_validation_mrr10": 83.53876062209396
+    },
+    {
+      "training_seed": 1,
+      "test_fold": 1,
+      "validation_questions": 601,
+      "test_questions": 299,
+      "zero_shot_weights": [
+        0.5,
+        0.2,
+        0.3
+      ],
+      "zero_shot_validation_mrr10": 83.09160658162322,
+      "proposed_weights": [
+        0.4,
+        0.5,
+        0.1
+      ],
+      "proposed_validation_mrr10": 84.92433246177006
+    },
+    {
+      "training_seed": 1,
+      "test_fold": 2,
+      "validation_questions": 605,
+      "test_questions": 295,
+      "zero_shot_weights": [
+        0.5,
+        0.3,
+        0.2
+      ],
+      "zero_shot_validation_mrr10": 84.23829201101928,
+      "proposed_weights": [
+        0.4,
+        0.5,
+        0.1
+      ],
+      "proposed_validation_mrr10": 86.18798373343827
+    },
+    {
+      "training_seed": 2,
+      "test_fold": 0,
+      "validation_questions": 594,
+      "test_questions": 306,
+      "zero_shot_weights": [
+        0.5,
+        0.2,
+        0.3
+      ],
+      "zero_shot_validation_mrr10": 81.70528031639142,
+      "proposed_weights": [
+        0.5,
+        0.4,
+        0.1
+      ],
+      "proposed_validation_mrr10": 83.78600823045267
+    },
+    {
+      "training_seed": 2,
+      "test_fold": 1,
+      "validation_questions": 601,
+      "test_questions": 299,
+      "zero_shot_weights": [
+        0.5,
+        0.2,
+        0.3
+      ],
+      "zero_shot_validation_mrr10": 83.09160658162322,
+      "proposed_weights": [
+        0.5,
+        0.4,
+        0.1
+      ],
+      "proposed_validation_mrr10": 84.72466524047223
+    },
+    {
+      "training_seed": 2,
+      "test_fold": 2,
+      "validation_questions": 605,
+      "test_questions": 295,
+      "zero_shot_weights": [
+        0.5,
+        0.3,
+        0.2
+      ],
+      "zero_shot_validation_mrr10": 84.23829201101928,
+      "proposed_weights": [
+        0.4,
+        0.4,
+        0.2
+      ],
+      "proposed_validation_mrr10": 86.13492063492062
+    },
+    {
+      "training_seed": 3,
+      "test_fold": 0,
+      "validation_questions": 594,
+      "test_questions": 306,
+      "zero_shot_weights": [
+        0.5,
+        0.2,
+        0.3
+      ],
+      "zero_shot_validation_mrr10": 81.70528031639142,
+      "proposed_weights": [
+        0.5,
+        0.4,
+        0.1
+      ],
+      "proposed_validation_mrr10": 82.98313826091605
+    },
+    {
+      "training_seed": 3,
+      "test_fold": 1,
+      "validation_questions": 601,
+      "test_questions": 299,
+      "zero_shot_weights": [
+        0.5,
+        0.2,
+        0.3
+      ],
+      "zero_shot_validation_mrr10": 83.09160658162322,
+      "proposed_weights": [
+        0.5,
+        0.4,
+        0.1
+      ],
+      "proposed_validation_mrr10": 84.17498613422075
+    },
+    {
+      "training_seed": 3,
+      "test_fold": 2,
+      "validation_questions": 605,
+      "test_questions": 295,
+      "zero_shot_weights": [
+        0.5,
+        0.3,
+        0.2
+      ],
+      "zero_shot_validation_mrr10": 84.23829201101928,
+      "proposed_weights": [
+        0.5,
+        0.4,
+        0.1
+      ],
+      "proposed_validation_mrr10": 85.40528663255937
+    }
+  ],
+  "systems": {
+    "BM25 char-4gram": {
+      "MRR@10": 79.8836860670194,
+      "MRR@10_per_seed": [
+        79.8836860670194,
+        79.8836860670194,
+        79.8836860670194
+      ],
+      "Recall@1": 73.55555555555556,
+      "Recall@5": 88.0
+    },
+    "Validation-tuned zero-shot fusion": {
+      "MRR@10": 82.79149029982364,
+      "MRR@10_per_seed": [
+        82.79149029982364,
+        82.79149029982364,
+        82.79149029982364
+      ],
+      "Recall@1": 77.55555555555556,
+      "Recall@5": 89.44444444444444
+    },
+    "Proposed cross-domain variant": {
+      "MRR@10": 84.36772486772486,
+      "MRR@10_per_seed": [
+        84.37799823633158,
+        84.5299823633157,
+        84.19519400352733
+      ],
+      "Recall@1": 79.33333333333333,
+      "Recall@5": 90.85185185185185
+    }
+  },
+  "comparisons": {
+    "BM25 char-4gram": {
+      "mean_MRR@10_difference": 4.484038800705466,
+      "CI95_passage_cluster_bootstrap": [
+        3.2706276957178226,
+        5.7071374582994086
+      ],
+      "difference_per_training_seed": [
+        4.4943121693121695,
+        4.646296296296297,
+        4.311507936507937
+      ]
+    },
+    "Validation-tuned zero-shot fusion": {
+      "mean_MRR@10_difference": 1.5762345679012344,
+      "CI95_passage_cluster_bootstrap": [
+        0.6535182894244597,
+        2.5391748047159184
+      ],
+      "difference_per_training_seed": [
+        1.5865079365079364,
+        1.7384920634920635,
+        1.4037037037037037
+      ]
+    }
+  }
+}

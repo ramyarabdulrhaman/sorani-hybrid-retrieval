@@ -1,0 +1,13 @@
+numpy==2.4.4
+pandas==3.0.6
+scipy==1.18.1
+scikit-learn==1.9.1
+matplotlib==3.11.2
+torch>=2.11.0  # CUDA build (e.g. 2.11.0+cu128) needed to re-run proposed_experiment.py in reasonable time
+transformers==5.20.2
+python-docx==1.2.0
+huggingface_hub
+safetensors
+openpyxl          # reads KNQAD .xlsx
+klpt==0.1.7       # Pewan stemmer comparison only
+klpt==0.1.7

@@ -1,0 +1,13 @@
+System,Recall@1,Recall@5,MRR@10
+BM25 word,48.77,66.22,55.54
+BM25 stems,52.13,68.68,58.91
+BM25 char-4gram,72.26,87.92,79.10
+E5 zero-shot,29.08,52.13,38.70
+BGE-M3 zero-shot,37.81,55.93,45.75
+RRF stems + E5,44.07,66.00,54.34
+RRF stems + BGE-M3,50.56,67.56,57.88
+RRF stems + E5 + BGE-M3,50.34,73.15,59.64
+RRF char-4gram + BGE-M3,57.49,74.05,64.97
+E5 news-fine-tuned,56.82,75.84,65.22
+Zero-shot fusion,76.29,88.81,81.86
+Fused retriever (news-trained),78.30,90.16,83.58

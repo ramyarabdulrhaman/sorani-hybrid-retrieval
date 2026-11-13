@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+*.log
+*.npz
+*.npy
+
+# model checkpoints and embedding caches (large; regenerate with the code)
+results/checkpoints/
+results/knqad/checkpoints/
+results/knqad/cache/
+results/*cache*/
+
+# data that may NOT be redistributed (obtain from the original sources; see data/README.md)
+data/raw/kurdish_news_corpus_source.txt
+data/external/pewan/
+data/external/pewan_repo/
+
+# manuscript files are not part of this repository
+article*
+*.tex
+*.bib
+*.docx

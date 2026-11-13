@@ -1,0 +1,128 @@
+{
+ "protocol": {
+  "status": "post-hoc equivalence and power analysis of saved per-query reciprocal ranks",
+  "equivalence_margins": "chosen for interpretation after the main analysis; not pre-registered",
+  "tost": "two one-sided tests; 90% bootstrap interval is the TOST interval at alpha=0.05",
+  "mde": "two-sided superiority design, alpha=0.05, power=0.80, observed paired standard deviation",
+  "bootstrap_resamples": 20000,
+  "seed": 42,
+  "note": "most queries are ties; discordant counts show the effective evidence"
+ },
+ "comparisons": {
+  "Zero-shot equal-weight fusion - char-4gram BM25": {
+   "n": 492,
+   "mean_difference_points": 0.14578493999225708,
+   "sd_points": 5.851742174856777,
+   "se_points": 0.2638169114485558,
+   "CI95": [
+    -0.350246806039489,
+    0.682951025938831
+   ],
+   "CI90": [
+    -0.2710027100271003,
+    0.592818428184282
+   ],
+   "equivalence_margin_points": 1.0,
+   "tost_p": 0.001399930003499825,
+   "tost_p_lower": 4.999750012499375e-05,
+   "tost_p_upper": 0.001399930003499825,
+   "mde80_points": 0.7391055594024918,
+   "wins": 7,
+   "losses": 5,
+   "ties": 480,
+   "discordant": 12
+  },
+  "Fine-tuned equal-weight fusion - char-4gram BM25": {
+   "n": 492,
+   "mean_difference_points": 0.25541198864369596,
+   "sd_points": 4.375264520737936,
+   "se_points": 0.19725215809935764,
+   "CI95": [
+    -0.10911972512582271,
+    0.6720873257839716
+   ],
+   "CI90": [
+    -0.057934894825138736,
+    0.5975529100529101
+   ],
+   "equivalence_margin_points": 1.0,
+   "tost_p": 0.00044997750112494374,
+   "tost_p_lower": 4.999750012499375e-05,
+   "tost_p_upper": 0.00044997750112494374,
+   "mde80_points": 0.5526187303720426,
+   "wins": 8,
+   "losses": 7,
+   "ties": 477,
+   "discordant": 15
+  },
+  "Fine-tuned equal-weight fusion - zero-shot equal-weight fusion": {
+   "n": 492,
+   "mean_difference_points": 0.1096270486514389,
+   "sd_points": 3.9135823113247774,
+   "se_points": 0.17643791664465686,
+   "CI95": [
+    -0.2460640082591302,
+    0.4471544715447154
+   ],
+   "CI90": [
+    -0.1872499677377726,
+    0.3941798941798942
+   ],
+   "equivalence_margin_points": 0.5,
+   "tost_p": 0.011799410029498525,
+   "tost_p_lower": 0.0007499625018749063,
+   "tost_p_upper": 0.011799410029498525,
+   "mde80_points": 0.4943058591863187,
+   "wins": 7,
+   "losses": 4,
+   "ties": 481,
+   "discordant": 11
+  },
+  "Validation-tuned fusion - char-4gram BM25": {
+   "n": 492,
+   "mean_difference_points": 0.02379349593495927,
+   "sd_points": 4.407412350757685,
+   "se_points": 0.19870149420682054,
+   "CI95": [
+    -0.3623044766260163,
+    0.41666867886178843
+   ],
+   "CI90": [
+    -0.30132906504065055,
+    0.35577174796747957
+   ],
+   "equivalence_margin_points": 1.0,
+   "tost_p": 4.999750012499375e-05,
+   "tost_p_lower": 4.999750012499375e-05,
+   "tost_p_upper": 4.999750012499375e-05,
+   "mde80_points": 0.556679168986788,
+   "wins": 9,
+   "losses": 15,
+   "ties": 468,
+   "discordant": 24
+  },
+  "Validation-tuned fusion - zero-shot tuned fusion": {
+   "n": 492,
+   "mean_difference_points": 0.19537215447154466,
+   "sd_points": 3.226828900732083,
+   "se_points": 0.14547668180287046,
+   "CI95": [
+    -0.08240548780487798,
+    0.4918724796747958
+   ],
+   "CI90": [
+    -0.035738211382113805,
+    0.439274400406504
+   ],
+   "equivalence_margin_points": 1.0,
+   "tost_p": 4.999750012499375e-05,
+   "tost_p_lower": 4.999750012499375e-05,
+   "tost_p_upper": 4.999750012499375e-05,
+   "mde80_points": 0.4075653213190457,
+   "wins": 16,
+   "losses": 9,
+   "ties": 467,
+   "discordant": 25
+  }
+ }
+}

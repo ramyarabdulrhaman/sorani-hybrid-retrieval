@@ -1,0 +1,259 @@
+{
+  "config": {
+    "model": "intfloat/multilingual-e5-base",
+    "outer_folds": 3,
+    "outer_partition_seeds": [
+      42,
+      2025
+    ],
+    "training_seeds": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "lr_grid": [
+      1e-05,
+      2e-05,
+      4e-05
+    ],
+    "modes": [
+      "raw",
+      "split"
+    ],
+    "epoch_checkpoints": [
+      2,
+      4,
+      6,
+      8
+    ],
+    "batch_size": 8,
+    "temperature": 0.05,
+    "max_len_query": 64,
+    "max_len_passage": 512,
+    "fusion": "z-score weighted sum, weights on a 0.1 grid summing to 1",
+    "validation_candidates": "validation passages plus BM25 hard distractors from inner-train",
+    "validation_candidate_count": 164,
+    "dense_normalization": "MorphoBPETokenizer.normalize_orthography",
+    "device": "cuda",
+    "torch": "2.11.0+cu128",
+    "test_passages_per_fold": [
+      164,
+      164,
+      164
+    ]
+  },
+  "systems": {
+    "BM25 (word)": {
+      "MRR@10": 97.42305458768872,
+      "MRR@10_CI95": [
+        96.16960656213705,
+        98.51922425474255
+      ],
+      "MRR@10_per_training_seed": [
+        97.42305458768872,
+        97.42305458768872,
+        97.42305458768872,
+        97.42305458768872,
+        97.42305458768872
+      ],
+      "MRR@10_seed_std": 0.0,
+      "Recall@1": 96.34146341463415
+    },
+    "BM25 (morpheme stems)": {
+      "MRR@10": 97.41277100271003,
+      "MRR@10_CI95": [
+        96.18055555555554,
+        98.47560975609755
+      ],
+      "MRR@10_per_training_seed": [
+        97.41277100271003,
+        97.41277100271003,
+        97.41277100271003,
+        97.41277100271003,
+        97.41277100271003
+      ],
+      "MRR@10_seed_std": 0.0,
+      "Recall@1": 96.23983739837398
+    },
+    "BM25 (char 4-gram)": {
+      "MRR@10": 98.95409891598915,
+      "MRR@10_CI95": [
+        98.25531419376694,
+        99.50086805555556
+      ],
+      "MRR@10_per_training_seed": [
+        98.95409891598916,
+        98.95409891598916,
+        98.95409891598916,
+        98.95409891598916,
+        98.95409891598916
+      ],
+      "MRR@10_seed_std": 0.0,
+      "Recall@1": 98.17073170731707
+    },
+    "multilingual-e5-base zero-shot": {
+      "MRR@10": 83.22372241579559,
+      "MRR@10_CI95": [
+        80.50329679636083,
+        85.81112784714155
+      ],
+      "MRR@10_per_training_seed": [
+        83.22372241579559,
+        83.22372241579559,
+        83.22372241579559,
+        83.22372241579559,
+        83.22372241579559
+      ],
+      "MRR@10_seed_std": 0.0,
+      "Recall@1": 76.3211382113821
+    },
+    "bge-m3 zero-shot": {
+      "MRR@10": 94.06020131629886,
+      "MRR@10_CI95": [
+        92.1538525132275,
+        95.71357392889406
+      ],
+      "MRR@10_per_training_seed": [
+        94.06020131629889,
+        94.06020131629889,
+        94.06020131629889,
+        94.06020131629889,
+        94.06020131629889
+      ],
+      "MRR@10_seed_std": 0.0,
+      "Recall@1": 91.66666666666666
+    },
+    "Hybrid RRF (BM25 char 4-gram + bge-m3)": {
+      "MRR@10": 97.20782520325203,
+      "MRR@10_CI95": [
+        96.14155657181573,
+        98.15718157181571
+      ],
+      "MRR@10_per_training_seed": [
+        97.20782520325203,
+        97.20782520325203,
+        97.20782520325203,
+        97.20782520325203,
+        97.20782520325203
+      ],
+      "MRR@10_seed_std": 0.0,
+      "Recall@1": 95.1219512195122
+    },
+    "Fusion of zero-shot components (tuned weights)": {
+      "MRR@10": 98.78252032520325,
+      "MRR@10_CI95": [
+        98.15433604336042,
+        99.33606029810298
+      ],
+      "MRR@10_per_training_seed": [
+        98.96115627822945,
+        98.37511291779585,
+        98.87646793134599,
+        98.6111111111111,
+        99.08875338753387
+      ],
+      "MRR@10_seed_std": 0.2871748418490166,
+      "Recall@1": 97.82520325203252
+    },
+    "e5-base fine-tuned (selected config)": {
+      "MRR@10": 95.2000258097819,
+      "MRR@10_CI95": [
+        93.9195259065686,
+        96.4387497580333
+      ],
+      "MRR@10_per_training_seed": [
+        95.50232288037166,
+        94.5755500709769,
+        95.3565379403794,
+        95.22704542521615,
+        95.33867273196542
+      ],
+      "MRR@10_seed_std": 0.3625612165264459,
+      "Recall@1": 92.33739837398373
+    },
+    "Proposed: KurdRAG Stage 1 (fine-tuned dense + lexical fusion)": {
+      "MRR@10": 98.97789230868499,
+      "MRR@10_CI95": [
+        98.39249016002066,
+        99.43948412698414
+      ],
+      "MRR@10_per_training_seed": [
+        99.13617886178862,
+        98.85529584462512,
+        98.94986449864498,
+        98.96438250096787,
+        98.98373983739837
+      ],
+      "MRR@10_seed_std": 0.1013493864382739,
+      "Recall@1": 98.1910569105691
+    }
+  },
+  "paired_comparisons": {
+    "Proposed vs BM25 (word)": {
+      "mean_MRR@10_diff": 1.5548377209962576,
+      "CI95": [
+        0.6019556958962445,
+        2.6202917311911205
+      ],
+      "p_two_sided": 0.0005
+    },
+    "Proposed vs BM25 (morpheme stems)": {
+      "mean_MRR@10_diff": 1.5651213059749642,
+      "CI95": [
+        0.689210906245967,
+        2.5755530955607173
+      ],
+      "p_two_sided": 0.0005
+    },
+    "Proposed vs BM25 (char 4-gram)": {
+      "mean_MRR@10_diff": 0.023793392695831615,
+      "CI95": [
+        -0.3403302038972772,
+        0.4236111111111101
+      ],
+      "p_two_sided": 0.862
+    },
+    "Proposed vs multilingual-e5-base zero-shot": {
+      "mean_MRR@10_diff": 15.754169892889406,
+      "CI95": [
+        13.129153761775711,
+        18.390512082204154
+      ],
+      "p_two_sided": 0.0005
+    },
+    "Proposed vs bge-m3 zero-shot": {
+      "mean_MRR@10_diff": 4.917690992386115,
+      "CI95": [
+        3.4170306249193447,
+        6.602218834688345
+      ],
+      "p_two_sided": 0.0005
+    },
+    "Proposed vs Hybrid RRF (BM25 char 4-gram + bge-m3)": {
+      "mean_MRR@10_diff": 1.770067105432959,
+      "CI95": [
+        1.0593816540843979,
+        2.5807342076396953
+      ],
+      "p_two_sided": 0.0005
+    },
+    "Proposed vs Fusion of zero-shot components (tuned weights)": {
+      "mean_MRR@10_diff": 0.19537198348173954,
+      "CI95": [
+        -0.08013433184927084,
+        0.4780701542134468
+      ],
+      "p_two_sided": 0.18
+    },
+    "Proposed vs e5-base fine-tuned (selected config)": {
+      "mean_MRR@10_diff": 3.7778664989030846,
+      "CI95": [
+        2.678969867079623,
+        4.847390993999225
+      ],
+      "p_two_sided": 0.0005
+    }
+  }
+}
