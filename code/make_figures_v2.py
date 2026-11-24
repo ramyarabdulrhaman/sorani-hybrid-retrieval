@@ -1,4 +1,4 @@
-﻿"""Generate the manuscript figures (v2) from saved result files.
+﻿"""Generate the figures (v2) from saved result files.
 
 Outputs (PDF + PNG) in figures/:
   fig_overview      study design diagram
@@ -6,8 +6,8 @@ Outputs (PDF + PNG) in figures/:
   fig_overlap       overlap distributions and per-query gain vs overlap
   fig_adaptive      fixed vs query-adaptive vs oracle fusion
   fig_recall        Recall@k curves on the headline collection
-Every plotted number is read from results/ except the confidence intervals already
-reported in tables/ (copied verbatim and marked below).
+Every plotted number is read from results/ except a few confidence intervals copied
+from the result files of the 30-model Belebele, Pewan, and cross-fitted analyses.
 """
 import json
 from pathlib import Path
@@ -105,11 +105,11 @@ def main_gains():
     news = c["News-trained fused retriever (30)"]["BM25 char-4gram"]
     knq = c["KNQAD-trained fused retriever (5)"]["BM25 char-4gram"]
     rows = [  # label, overlap, diff, lo, hi, metric
-        ("Headlines (cross-fitted)", "0.80", 0.02, -0.34, 0.42, "MRR@10"),   # tables/tex_table_8
+        ("Headlines (cross-fitted)", "0.80", 0.02, -0.34, 0.42, "MRR@10"),
         ("KNQAD, news-trained", "0.38", news["diff"], *news["CI95"], "MRR@10"),
         ("KNQAD, KNQAD-trained", "0.38", knq["diff"], *knq["CI95"], "MRR@10"),
-        ("Belebele, news-trained", "0.18", 3.64, 1.93, 5.45, "MRR@10"),      # tex_table_belebele_30
-        ("Pewan, news-trained", "n/a", 3.84, 0.48, 7.38, "nDCG@10"),         # tex_table_pewan_fusion_paired
+        ("Belebele, news-trained", "0.18", 3.64, 1.93, 5.45, "MRR@10"),
+        ("Pewan, news-trained", "n/a", 3.84, 0.48, 7.38, "nDCG@10"),
     ]
     fig, (a, b) = plt.subplots(1, 2, figsize=(7.2, 2.7), gridspec_kw={"width_ratios": [1.35, 1]})
     y = np.arange(len(rows))[::-1]
@@ -125,7 +125,7 @@ def main_gains():
     a.set_title("(a) Gain over the strongest lexical baseline", fontsize=8.5, loc="left", color=INK)
 
     terc = kn["terciles_vs_char4"]["News-trained fused retriever (30)"]
-    bel = [(6.92, 2.92, 11.04), (4.64, 1.74, 7.76), (0.47, -1.15, 2.25)]  # tex_table_belebele_30 text
+    bel = [(6.92, 2.92, 11.04), (4.64, 1.74, 7.76), (0.47, -1.15, 2.25)]
     knr = [(terc[k]["diff_vs_char4"], *terc[k]["CI95"]) for k in ("low", "mid", "high")]
     x = np.arange(3)
     for off, data, col, lab in ((-0.12, bel, BLUE, "Belebele"), (0.12, knr, ORANGE, "KNQAD")):

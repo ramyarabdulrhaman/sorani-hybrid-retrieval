@@ -165,65 +165,6 @@ def bootstrap_ci(values, rng):
     return [float(x) for x in np.percentile(samples, [2.5, 97.5])]
 
 
-def write_tex_table(metrics, output_path):
-    labels = {
-        "BM25 word": "BM25 word",
-        "BM25 char-4gram": "BM25 char-4gram",
-        "BM25 splitter": "BM25 splitter",
-        "BM25 Jedar": "BM25 Jedar*",
-        "BM25 KLPT": "BM25 KLPT",
-    }
-    rows = []
-    for system in SYSTEMS:
-        for metric in ("P@10", "nDCG@10", "MAP", "Recall@100"):
-            ci = metrics[system][f"{metric}_CI95"]
-            rows.append(
-                f"{labels[system]} & {metric} & "
-                f"{metrics[system][metric]:.2f} [{ci[0]:.2f}, {ci[1]:.2f}] \\\\"
-            )
-    table = "\n".join([
-        r"\begin{tabular}{llr}",
-        r"\toprule",
-        r"System & Metric & Value (95\% CI) \\",
-        r"\midrule",
-        *rows,
-        r"\bottomrule",
-        r"\end{tabular}",
-        "",
-    ])
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(table, encoding="utf-8")
-
-
-def write_paired_tex_table(metric_comparisons, output_path):
-    rows = []
-    for system, label in (
-        ("BM25 word", "Char-4gram - word BM25"),
-        ("BM25 KLPT", "Char-4gram - KLPT"),
-    ):
-        comparison = metric_comparisons[f"{system} minus BM25 char-4gram"]
-        for metric in ("P@10", "nDCG@10", "MAP", "Recall@100"):
-            result = comparison[metric]
-            low, high = result["paired_bootstrap_CI95"]
-            difference = -result["difference_points"]
-            rows.append(
-                f"{label} & {metric} & "
-                f"{difference:+.2f} [{-high:+.2f}, {-low:+.2f}] \\\\"
-            )
-    table = "\n".join([
-        r"\begin{tabular}{llr}",
-        r"\toprule",
-        r"Comparison & Metric & Difference (95\% paired CI) \\",
-        r"\midrule",
-        *rows,
-        r"\bottomrule",
-        r"\end{tabular}",
-        "",
-    ])
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(table, encoding="utf-8")
-
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--pewan-root", type=Path, required=True,
@@ -233,10 +174,6 @@ def main():
     parser.add_argument("--jedar-suffixes", type=Path, required=True,
                         help="Pewan bundle's Others/suffixes.txt; upstream Jedar repository omits this file")
     parser.add_argument("--output", type=Path, default=Path(R.OUT) / "pewan_results.json")
-    parser.add_argument("--table-output", type=Path,
-                        default=Path(R.BASE) / "tables" / "tex_table_pewan.tex")
-    parser.add_argument("--paired-table-output", type=Path,
-                        default=Path(R.BASE) / "tables" / "tex_table_pewan_paired.tex")
     args = parser.parse_args()
 
     from klpt.stem import Stem
@@ -418,8 +355,6 @@ def main():
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    write_tex_table(metrics, args.table_output)
-    write_paired_tex_table(metric_comparisons, args.paired_table_output)
     print(json.dumps({
         "systems": metrics,
         "comparisons_vs_char4": comparisons,

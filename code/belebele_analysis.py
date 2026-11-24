@@ -1,4 +1,4 @@
-"""Generate the manuscript table and control comparison from saved ranks."""
+"""Generate the result table and control comparison from saved ranks."""
 import csv
 import json
 from pathlib import Path

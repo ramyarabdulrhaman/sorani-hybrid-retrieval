@@ -209,7 +209,7 @@ def main():
     ], ignore_index=True)
     per_query.to_csv(os.path.join(RESULTS, 'task_dependence_per_query.csv'), index=False)
 
-    # Compact table for the manuscript.
+    # Compact summary table.
     rows = []
     for r in [headline_summary[0], belebele_summary[0]]:
         d = r['difference']
