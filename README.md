@@ -122,7 +122,7 @@ python code/pewan_evaluation.py ; python code/pewan_dense_fusion.py      # Pewan
 python code/knqad_experiment.py                                          # KNQAD (also fine-tunes 5 E5 seeds)
 
 # Figures
-python code/make_fig1_summary.py ; python code/make_fig_overview.py
+python code/make_figures_v2.py
 ```
 
 Every reported number is read from a file in `results/`; none is typed by hand. Bootstrap seed 42. BM25 is deterministic. GPU training uses fp16 and is not bit-wise deterministic.
