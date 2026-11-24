@@ -1,4 +1,4 @@
-﻿"""Render the HTML figure sources to HD PNG (4x) and vector PDF using headless Edge/Chrome."""
+"""Render the HTML figure sources to HD PNG (4x) and vector PDF using headless Edge/Chrome."""
 import os, subprocess, sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -7,8 +7,7 @@ OUT = os.path.join(BASE, 'figures')
 BROWSERS = [r'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe',
             r'C:\Program Files\Google\Chrome\Application\chrome.exe']
 FIGS = {
-    'fig1': ('fig1_kurdrag_architecture',     1260, 846),
-        'fig10': ('fig10_morpho_bpe_tokenization_case_study', 1180, 640),
+    'fig10': ('fig10_morpho_bpe_tokenization_case_study', 1180, 640),
 }
 SCALE = 4
 
